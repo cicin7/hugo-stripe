@@ -1,0 +1,9 @@
+{{ partial "head.html" . }}
+{{ .Content }}
+<section class="products">
+{{ $favorite := index .Site.Taxonomies.tags.favorite }}
+{{ range $favorite }}
+{{ partial "product.html" . }}
+{{ end }}
+</section>
+{{ partial "footer.html" . }}

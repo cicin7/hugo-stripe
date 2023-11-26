@@ -1,0 +1,12 @@
+{{ partial "head.html" . }}
+{{ .Content }}
+
+<ul>
+{{ range ((where .Site.RegularPages "Section" "2020" ).ByParam "Price").Reverse }}
+<li><a href="{{.RelPermalink}}">
+{{ $alternate_title := replace .File.BaseFileName "_" " " | title }}
+{{ .Title  | default $alternate_title }} - Price {{ lang.NumFmt 2 (div (float .Params.Price) 100) }} {{ $.Site.Params.currency }}
+</a></li>
+{{ end }}
+</ul>
+{{ partial "footer.html" . }}
